@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 export default class Search extends React.Component {
+
     state = {
         apiResults1Title: [],
         apiResults1Author: [],
@@ -12,12 +13,13 @@ export default class Search extends React.Component {
         apiResults2Author: [],
         apiResults2Description: [],
         apiResults2Thumbnail: [],
-        apiResults2Href: []
+        apiResults2Href: [],
+        userInput: ""
     }
     componentDidMount(){
         console.log('working')
         var key = 'AIzaSyCeb5HlrnsOhcdQDoC91dpbZe2Wo_Onibo'
-        var URL = `https://www.googleapis.com/books/v1/volumes?q=flowers&orderBy=newest&key=${key}`
+        var URL = `https://www.googleapis.com/books/v1/volumes?q=flowers}&orderBy=newest&key=${key}`
 
         axios.get(URL)
         .then(res => {
@@ -55,10 +57,10 @@ export default class Search extends React.Component {
                         marginTop: "10px"
                     }}
                 >
-                    <div className="hero bg-gray">
+                    <div className="hero bg-gray" onSubmit={this.componentDidMount}>
                         <div className="hero-body">
                             <p>Search</p>
-                            <input type="text" placeholder="Search Books"></input>
+                            <input type="text" placeholder="Search Books" name="search" value={this.state.userInput}></input>
                             <button type="submit"
                                 style={{
                                     marginLeft: "10px"
